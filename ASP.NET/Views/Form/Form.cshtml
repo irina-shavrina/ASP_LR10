@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ConsultationRequest
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+    </head>
+    <body>
+        @if (!ViewData.ModelState.IsValid){
+            <div>
+                    @foreach (var key in ViewData.ModelState.Keys)
+                    {
+                        foreach (var error in ViewData.ModelState[key].Errors)
+                        {
+                            <p>@error.ErrorMessage</p>
+                        }
+                    }
+            </div>
+        }
+        <form asp-action="Form">
+            <div>
+                <label asp-for="FullName">Уведіть Ім'я: </label>
+                <input asp-for="FullName"/>
+            </div>
+            <div>
+                <label asp-for="Email">Уведіть пошту: </label>
+                <input asp-for="Email"/>
+            </div>
+            <div>
+                <label asp-for="ConsultationDate">Виберіть дату консультації: </label>
+                <input asp-for="ConsultationDate" type="date"/>
+            </div>
+            <div>
+                <label asp-for="Theme">Виберіть тему консультації: </label>
+                <select asp-for="Theme">
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C#">C#</option>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="Basics">Basics</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
